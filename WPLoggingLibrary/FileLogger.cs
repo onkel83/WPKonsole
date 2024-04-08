@@ -14,26 +14,29 @@ namespace WPLoggingLibrary
     {
         void Log(LogLevel level, string message);
     }
-    public class FileLogger : ILogger, IDisposable
+
+    public sealed class FileLogger : ILogger, IDisposable
     {
+        private static readonly Lazy<FileLogger> _instance = new(() => new FileLogger());
+        public static FileLogger Instance => _instance.Value;
+
         private readonly string _logDirectory;
         private readonly string _logFileName;
         private readonly string _logFilePath;
         private readonly object _lockObject = new();
-        private StreamWriter? _streamWriter;
+        private StreamWriter _streamWriter;
         private readonly LogLevel _minimumLogLevel;
         private readonly Dictionary<LogLevel, Action<string>> _loggingHooks;
         private readonly Queue<(LogLevel level, string message)> _messageQueue;
         private readonly Thread _logThread;
         private bool _isRunning = true;
 
-        public FileLogger(string logDirectory, string logFileName, LogLevel minimumLogLevel)
+        private FileLogger()
         {
-            _streamWriter = null;
-            _logDirectory = logDirectory ?? throw new ArgumentNullException(nameof(logDirectory));
-            _logFileName = logFileName ?? throw new ArgumentNullException(nameof(logFileName));
+            _logDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Logs");
+            _logFileName = DateTime.Now.ToString("dd.MM.yyyy") + ".log";
             _logFilePath = Path.Combine(_logDirectory, _logFileName);
-            _minimumLogLevel = minimumLogLevel;
+            _minimumLogLevel = LogLevel.Debug;
 
             EnsureLogDirectoryExists();
 
@@ -118,7 +121,7 @@ namespace WPLoggingLibrary
                     }
                     else
                     {
-                        throw new Exception("Der Streamweiter war nicht bereit!");
+                        throw new Exception("The stream writer was not ready!");
                     }
                 }
             }
@@ -178,11 +181,7 @@ namespace WPLoggingLibrary
             _logThread.Join();
             lock (_lockObject)
             {
-                if (_streamWriter != null)
-                {
-                    _streamWriter.Dispose();
-                    _streamWriter = null;
-                }
+                _streamWriter?.Dispose();
             }
             GC.SuppressFinalize(this);
         }

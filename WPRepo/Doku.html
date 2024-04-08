@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JsonRepository API-Dokumentation</title>
+</head>
+<body>
+    <h1>JsonRepository&lt;T&gt; Klasse</h1>
+
+    <p>Die JsonRepository&lt;T&gt;-Klasse ermöglicht das Speichern und Laden von Datenobjekten vom Typ T in JSON-Dateien.</p>
+
+    <h2>Konstruktoren</h2>
+    <ul>
+        <li><strong>JsonRepository():</strong> Erstellt eine neue Instanz der JsonRepository&lt;T&gt;-Klasse.</li>
+        <li><strong>JsonRepository(string filePath):</strong> Erstellt eine neue Instanz der JsonRepository&lt;T&gt;-Klasse mit dem angegebenen Dateipfad.</li>
+    </ul>
+
+    <h2>Eigenschaften</h2>
+    <ul>
+        <li><strong>Instance:</strong> Statische Eigenschaft, die eine Singleton-Instanz der JsonRepository&lt;T&gt;-Klasse zurückgibt.</li>
+        <li><strong>FilePath:</strong> Dateipfad, in dem die Daten gespeichert werden sollen.</li>
+    </ul>
+
+    <h2>Methoden</h2>
+    <ul>
+        <li><strong>GetData():</strong> Ruft die geladenen Datenobjekte vom Typ T ab.</li>
+        <li><strong>AddData(T data):</strong> Fügt ein neues Datenobjekt vom Typ T hinzu.</li>
+        <li><strong>Dispose():</strong> Gibt Ressourcen frei und speichert die Daten in der JSON-Datei.</li>
+    </ul>
+
+    <h2>Verwendung der JsonRepository-Klasse</h2>
+    <ol>
+        <li>Importieren Sie das WPRepo-Namespace.</li>
+        <li>Erstellen Sie eine Instanz der JsonRepository&lt;T&gt;-Klasse und legen Sie bei Bedarf den Dateipfad fest.</li>
+        <li>Verwenden Sie die GetData()-Methode, um die gespeicherten Daten abzurufen.</li>
+        <li>Fügen Sie neue Daten hinzu und speichern Sie sie.</li>
+        <li>Vergessen Sie nicht, die Dispose()-Methode aufzurufen, um die Ressourcen freizugeben und die Daten zu speichern, wenn Sie fertig sind.</li>
+    </ol>
+</body>
+</html>

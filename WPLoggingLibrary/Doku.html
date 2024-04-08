@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FileLogger API-Dokumentation</title>
+</head>
+<body>
+    <h1>FileLogger Klasse</h1>
+
+    <p>Die FileLogger-Klasse ermöglicht das Protokollieren von Nachrichten in einer Datei.</p>
+
+    <h2>Eigenschaften</h2>
+    <ul>
+        <li><strong>Instance:</strong> Statische Eigenschaft, die eine Singleton-Instanz der FileLogger-Klasse zurückgibt.</li>
+    </ul>
+
+    <h2>Methoden</h2>
+    <ul>
+        <li><strong>Log(LogLevel level, string message):</strong> Protokolliert eine Nachricht mit dem angegebenen Log-Level.</li>
+        <li><strong>Dispose():</strong> Gibt Ressourcen frei und beendet die Protokollierung.</li>
+    </ul>
+
+    <h2>Verwendung des FileLogger</h2>
+    <ol>
+        <li>Importieren Sie das <code>WPLoggingLibrary</code>-Namespace.</li>
+        <li>Verwenden Sie die <code>Instance</code>-Eigenschaft, um auf die Singleton-Instanz des <code>FileLogger</code> zuzugreifen.</li>
+        <li>Verwenden Sie die <code>Log()</code>-Methode, um Nachrichten zu protokollieren.</li>
+        <li>Stellen Sie sicher, dass Sie die <code>Dispose()</code>-Methode aufrufen, um die Ressourcen freizugeben, wenn Sie den <code>FileLogger</code> nicht mehr benötigen.</li>
+    </ol>
+</body>
+</html>

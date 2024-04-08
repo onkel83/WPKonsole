@@ -1,12 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <OutputType>Exe</OutputType>
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
+    <Reference Include="PluginSystem">
+      <HintPath>..\PluginManager\bin\Release\net8.0\PluginSystem.dll</HintPath>
+    </Reference>
     <Reference Include="WPInterfaces">
       <HintPath>..\WPInterfaces\bin\Release\net8.0\WPInterfaces.dll</HintPath>
     </Reference>

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Reflection;
+﻿using System.Reflection;
 using WPInterfaces;
 using WPLoggingLibrary;
 
@@ -10,7 +6,7 @@ namespace PluginManager
 {
     public sealed class PluginManager
     {
-        private static readonly Lazy<PluginManager> _instance = new Lazy<PluginManager>(() => new PluginManager());
+        private static readonly Lazy<PluginManager> _instance = new(() => new PluginManager());
         private readonly List<IPlugin> _loadedPlugins;
         private readonly FileLogger _logger;
 
@@ -18,8 +14,8 @@ namespace PluginManager
 
         private PluginManager()
         {
-            _loadedPlugins = new List<IPlugin>();
-            _logger = new FileLogger(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Logs"), DateTime.Now.ToString("HH_mm_dd_MM_yyyy") + ".log", LogLevel.Debug);
+            _loadedPlugins = [];
+            _logger = FileLogger.Instance;
         }
 
         ~PluginManager()

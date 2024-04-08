@@ -13,6 +13,9 @@
     <Reference Include="WPLoggingLibrary">
       <HintPath>..\WPLoggingLibrary\bin\Release\net8.0\WPLoggingLibrary.dll</HintPath>
     </Reference>
+    <Reference Include="WPRepo">
+      <HintPath>..\WPRepo\bin\Release\net8.0\WPRepo.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>
