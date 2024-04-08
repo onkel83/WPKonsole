@@ -11,12 +11,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="WPInterfaces">
-      <HintPath>..\WPInterfaces\bin\Release\net8.0\WPInterfaces.dll</HintPath>
-    </Reference>
-    <Reference Include="WPLoggingLibrary">
-      <HintPath>..\WPLoggingLibrary\bin\Release\net8.0\WPLoggingLibrary.dll</HintPath>
-    </Reference>
+    <ProjectReference Include="..\WPInterfaces\WPInterfaces.csproj" />
+    <ProjectReference Include="..\WPLoggingLibrary\WPLoggingLibrary.csproj" />
   </ItemGroup>
 
 </Project>

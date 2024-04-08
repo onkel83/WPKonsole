@@ -24,7 +24,7 @@ namespace WPLoggingLibrary
         private readonly string _logFileName;
         private readonly string _logFilePath;
         private readonly object _lockObject = new();
-        private StreamWriter _streamWriter;
+        private StreamWriter? _streamWriter;
         private readonly LogLevel _minimumLogLevel;
         private readonly Dictionary<LogLevel, Action<string>> _loggingHooks;
         private readonly Queue<(LogLevel level, string message)> _messageQueue;

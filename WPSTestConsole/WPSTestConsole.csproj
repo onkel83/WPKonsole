@@ -8,15 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Reference Include="PluginSystem">
-      <HintPath>..\PluginManager\bin\Release\net8.0\PluginSystem.dll</HintPath>
-    </Reference>
-    <Reference Include="WPInterfaces">
-      <HintPath>..\WPInterfaces\bin\Release\net8.0\WPInterfaces.dll</HintPath>
-    </Reference>
-    <Reference Include="WPLoggingLibrary">
-      <HintPath>..\WPLoggingLibrary\bin\Release\net8.0\WPLoggingLibrary.dll</HintPath>
-    </Reference>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PluginManager\PluginSystem.csproj" />
+    <ProjectReference Include="..\WPInterfaces\WPInterfaces.csproj" />
+    <ProjectReference Include="..\WPLoggingLibrary\WPLoggingLibrary.csproj" />
   </ItemGroup>
 
 </Project>

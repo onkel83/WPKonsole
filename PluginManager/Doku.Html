@@ -7,20 +7,20 @@
 </head>
 <body>
     <h1>PluginManager Klasse</h1>
-    <p>Die PluginManager-Klasse ermöglicht das Laden, Entladen und Verwalten von Plugins.</p>
+    <p>Die PluginManager-Klasse ermï¿½glicht das Laden, Entladen und Verwalten von Plugins.</p>
 
     <h2>Eigenschaften</h2>
     <ul>
-        <li><strong>Instance:</strong> Statische Eigenschaft, die eine Singleton-Instanz des PluginManagers zurückgibt.</li>
+        <li><strong>Instance:</strong> Statische Eigenschaft, die eine Singleton-Instanz des PluginManagers zurï¿½ckgibt.</li>
     </ul>
 
     <h2>Methoden</h2>
     <ul>
-        <li><strong>LoadPlugins(string pluginDirectory):</strong> Lädt alle Plugins aus dem angegebenen Verzeichnis.</li>
-        <li><strong>LoadPlugins(IEnumerable&lt;string&gt; dllPaths):</strong> Lädt Plugins aus einer Liste von DLL-Pfaden.</li>
-        <li><strong>LoadPluginByName(string pluginName, string pluginDirectory):</strong> Lädt ein bestimmtes Plugin aus dem angegebenen Verzeichnis anhand des Namens.</li>
-        <li><strong>UnloadPluginByName(string pluginName):</strong> Entlädt ein bestimmtes Plugin anhand des Namens.</li>
-        <li><strong>UnloadAllPlugins():</strong> Entlädt alle geladenen Plugins.</li>
+        <li><strong>LoadPlugins(string pluginDirectory):</strong> Lï¿½dt alle Plugins aus dem angegebenen Verzeichnis.</li>
+        <li><strong>LoadPlugins(IEnumerable&lt;string&gt; dllPaths):</strong> Lï¿½dt Plugins aus einer Liste von DLL-Pfaden.</li>
+        <li><strong>LoadPluginByName(string pluginName, string pluginDirectory):</strong> Lï¿½dt ein bestimmtes Plugin aus dem angegebenen Verzeichnis anhand des Namens.</li>
+        <li><strong>UnloadPluginByName(string pluginName):</strong> Entlï¿½dt ein bestimmtes Plugin anhand des Namens.</li>
+        <li><strong>UnloadAllPlugins():</strong> Entlï¿½dt alle geladenen Plugins.</li>
         <li><strong>Dispose():</strong> Gibt Ressourcen frei und beendet den PluginManager.</li>
     </ul>
 
@@ -28,12 +28,12 @@
     <ol>
         <li>Importieren Sie das PluginManager-Namespace.</li>
         <li>Verwenden Sie die Instance-Eigenschaft, um auf die Singleton-Instanz des PluginManagers zuzugreifen.</li>
-        <li>Verwenden Sie die verschiedenen Methoden des PluginManagers, um Plugins zu laden, zu entladen oder Informationen darüber zu protokollieren.</li>
+        <li>Verwenden Sie die verschiedenen Methoden des PluginManagers, um Plugins zu laden, zu entladen oder Informationen darï¿½ber zu protokollieren.</li>
     </ol>
 
     <h2>Erstellung eines Plugins</h2>
     <ol>
-        <li>Erstellen Sie ein neues Projekt für das Plugin und implementieren Sie das IPlugin-Interface aus dem WPInterfaces-Namespace.</li>
+        <li>Erstellen Sie ein neues Projekt fï¿½r das Plugin und implementieren Sie das IPlugin-Interface aus dem WPInterfaces-Namespace.</li>
         <li>Kompilieren Sie das Plugin-Projekt in eine DLL-Datei.</li>
         <li>Platzieren Sie die DLL-Datei im Plugin-Verzeichnis, das Sie beim Laden des Plugins angeben.</li>
     </ol>

@@ -1,8 +1,8 @@
-﻿
-using WPLoggingLibrary;
+﻿using PluginManager;
 
-Console.WriteLine("Hello, World!");
-FileLogger.Instance.Log(LogLevel.Debug, "Test Eintrag!");
-FileLogger.Instance.Dispose();
-Console.WriteLine("Test Eintrag erstellt!");
+var plugins = PluginManager.PluginManager.Instance;
+plugins.LoadPlugins(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Plugins"));
+plugins.ExecutePlugin("UserPlugin", ["con"]);
+plugins.Dispose();
+Console.WriteLine("Ende des Programms!");
 Console.ReadLine();

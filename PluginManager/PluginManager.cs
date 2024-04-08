@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using System.Runtime.InteropServices;
 using WPInterfaces;
 using WPLoggingLibrary;
 
@@ -21,6 +22,18 @@ namespace PluginManager
         ~PluginManager()
         {
             Dispose();
+        }
+
+        public void ExecutePlugin(string pluginName, string[] args)
+        {
+            foreach(var t in _loadedPlugins)
+            {
+                if (t.Name.Equals(pluginName))
+                {
+                    t.Execute(args);
+                    return;
+                }
+            }
         }
 
         public void LoadPlugins(string pluginDirectory)

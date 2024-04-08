@@ -12,5 +12,10 @@ namespace UserPlugin
         public string Name { get => name??"TestUser"; set => name = value; }
         public string Text { get => text??"Hier könnte ihre Werbung stehen !"; set => text = value; }
 
+        public override string ToString()
+        {
+            return $"{ID};{Name};{Text}";
+        }
+
     }
 }
