@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace UserPlugin
+﻿namespace Helfer
 {
     public static class Konsole
     {
@@ -46,7 +42,7 @@ namespace UserPlugin
 
         public static string? GetUserInput(string prompt)
         {
-            Console.Write(prompt);
+            Console.WriteLine(prompt);
             return Console.ReadLine();
         }
 
@@ -62,11 +58,35 @@ namespace UserPlugin
 
         public static bool IsExitKey(string key, string value)
         {
-            if (key.Equals(value))
+            if (key.Equals(value.ToLower()))
             {
                 return true;
             }
             return false;
+        }
+
+        public static string[]? GetUserInput(string[] prompts)
+        {
+            string[] result = new string[prompts.Length];
+            int i = 0;
+            foreach(string prompt in prompts)
+            {
+                result[i] = (GetUserInput(prompt)??string.Empty);
+                i++;
+            }
+            return result;
+        }
+
+        public static string[]? GetUserNotNullInput(string[] prompts)
+        {
+            string[] result = new string[prompts.Length];
+            int i = 0;
+            foreach (string prompt in prompts)
+            {
+                result[i] = (GetUserNotNullInput(prompt));
+                i++;
+            }
+            return result;
         }
     }
 }

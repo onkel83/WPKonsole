@@ -7,6 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Reference Include="Helfer">
+      <HintPath>..\Helfer\bin\Release\net8.0\Helfer.dll</HintPath>
+    </Reference>
     <Reference Include="WPInterfaces">
       <HintPath>..\WPInterfaces\bin\Release\net8.0\WPInterfaces.dll</HintPath>
     </Reference>

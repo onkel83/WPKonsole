@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Helfer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 using WPLoggingLibrary;
 using WPRepo;
 
-namespace UserPlugin
+namespace Plugins
 {
     public class UC
     {
@@ -14,7 +15,6 @@ namespace UserPlugin
         private readonly FileLogger _logger = FileLogger.Instance;
         private bool _isRunning = true;
         private List<User> _data = [];
-
 
         public UC() {
             Run();
@@ -136,19 +136,32 @@ namespace UserPlugin
             Konsole.Menu(50, "#", "", "");
             Konsole.Menu(50, "#", "[q]", "Eingabe kann 'Jeder'zeit mit [q] beendet werden !");
             Konsole.Line(50, "#");
-            string id = Konsole.GetUserNotNullInput("Bitte geben sie die ID ein : ");
-            if (Konsole.IsExitKey("q", id))
-                return;
-            string name = Konsole.GetUserNotNullInput("Bitte geben sie den Namen ein : ");
-            if (Konsole.IsExitKey("q", name))
-                return;
-            string text = Konsole.GetUserInput("Bitte geben sie den Text ein : ")??"";
-            if(Konsole.IsExitKey("q", text))
-                return;
-            string value = Konsole.GetUserNotNullInput($"Möchten sie den User mit folgenden Daten anlegen J/N?\r\nID : {id}\r\nName : {name}\r\nText : {text}");
-            if(Konsole.IsExitKey("j", value))
+            string[] prompts = [
+                "Bitte geben sie den Namen ein : ",
+                "Bitte geben sie den Rolle ein : (0:Gast|1:Benutzer|2:Moderrator|3:Administrator)"
+                ];
+            string[]? result = Konsole.GetUserNotNullInput(prompts)??null;
+            if(result != null)
             {
-                _repository.AddData(new() { ID = id, Name = name, Text = text }) ;
+                foreach(string prompt in prompts)
+                {
+                    if (prompt.Equals("q"))
+                    {
+                        return;
+                    }
+                }
+            }
+            if(result != null && result.Length == prompts.Length)
+            {
+                User u = new() { ID = RepoHelper.GetLastID(_repository.GetData()).ToString(), Name = result[0], Rolle = result[1], UserID = RepoHelper.GenerateUserID(), Password = StringEncryptor.GenerateKey() };
+                _repository.AddData(u) ;
+                _logger.Log(LogLevel.Debug, $"Benutzer mit Folgenden Daten hinzugefügt : ID : {u.ID}, Name : {u.Name}, Rolle : {u.Rolle}, UserID : {u.UserID}, Password : {u.Password}");
+                Console.WriteLine($"Daten : \r\nID : {u.ID}\r\nName : {u.Name}\r\nRolle : {u.Rolle}\r\nUserID : {u.UserID}\r\nPassword : {u.Password}\r\nBenutzer Erfolgreich hinzugefügt ! [Enter] zum fort fahren");
+                Console.ReadLine();
+            }
+            else
+            {
+                _logger.Log(LogLevel.Warning, "Fehler beim erstellen eines Users! result[] stimmt nicht mit Prompts[] überein !");
             }
         }
         private void Delete()
@@ -162,9 +175,11 @@ namespace UserPlugin
             Konsole.Line(50, "#");
             string id = Konsole.GetUserNotNullInput("Bitte geben sie die ID ein : ");
             if (Konsole.IsExitKey("q", id))
+            {
                 return;
-            User? userToRemove = _repository.GetData().Find(u => u.ID == id);
-            if (userToRemove != null)
+            }
+            User userToRemove = _repository.GetData().Find(u => u.ID == id)??new();
+            if (userToRemove != null && (!string.IsNullOrEmpty(userToRemove.ID)))
             {
                 _repository.GetData().Remove(userToRemove);
                 Console.WriteLine("User removed.");
@@ -192,8 +207,14 @@ namespace UserPlugin
                 userToUpdate.Name = Konsole.GetUserInput("Bitte geben sie den Namen ein : ")??userToUpdate.Name;
                 if (Konsole.IsExitKey("q", userToUpdate.Name))
                     return;
-                userToUpdate.Text = Konsole.GetUserInput("Bitte geben sie den Text ein : ")??userToUpdate.Text;
-                if (Konsole.IsExitKey("q", userToUpdate.Text))
+                userToUpdate.Rolle = Konsole.GetUserInput("Bitte geben sie den Rolle ein : (0:Gast|1:Benutzer|2:Moderrator|3:Administrator")??userToUpdate.Rolle;
+                if (Konsole.IsExitKey("q", userToUpdate.Rolle))
+                    return;
+                userToUpdate.UserID = Konsole.GetUserInput("Bitte geben sie die UserID ein : (####-#)")??userToUpdate.UserID;
+                if(Konsole.IsExitKey("q", userToUpdate.UserID))
+                    return;
+                userToUpdate.Password = Konsole.GetUserNotNullInput("Neues Passwort erstellen ?")?? userToUpdate.Password;
+                if (Konsole.IsExitKey("q", userToUpdate.Password))
                     return;
                 Console.WriteLine("User updated.");
             }
